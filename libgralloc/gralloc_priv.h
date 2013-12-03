@@ -175,6 +175,10 @@ struct private_handle_t : public native_handle {
             PRIV_FLAGS_EXTERNAL_BLOCK     = 0x00004000,
             // Display this buffer on external as close caption
             PRIV_FLAGS_EXTERNAL_CC        = 0x00008000,
+            PRIV_FLAGS_VIDEO_ENCODER      = 0x00010000,
+            PRIV_FLAGS_CAMERA_WRITE       = 0x00020000,
+            PRIV_FLAGS_CAMERA_READ        = 0x00040000,
+            PRIV_FLAGS_USES_PMEM_SMI      = 0x00080000,
         };
 
         // file-descriptors
