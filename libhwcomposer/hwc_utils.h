@@ -51,6 +51,20 @@ struct MDPInfo {
     bool hasOverlay;
 };
 
+struct DisplayAttributes {
+    uint32_t vsync_period; //nanos
+    uint32_t xres;
+    uint32_t yres;
+    uint32_t stride;
+    float xdpi;
+    float ydpi;
+    int fd;
+    bool connected; //Applies only to pluggable disp.
+    //Connected does not mean it ready to use.
+    //It should be active also. (UNBLANKED)
+    bool isActive;
+};
+
 enum external_display_type {
     EXT_TYPE_NONE,
     EXT_TYPE_HDMI,
@@ -174,6 +188,12 @@ struct hwc_context_t {
     qhwc::ExternalDisplay *mExtDisplay;
 
     qhwc::MDPInfo mMDP;
+    qhwc::DisplayAttributes dpyAttr[HWC_NUM_DISPLAY_TYPES];
+
+    //Securing in progress indicator
+    bool mSecuring;
+    //Display in secure mode indicator
+    bool mSecureMode;
 
     //Vsync
     struct vsync_state vstate;

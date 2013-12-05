@@ -69,6 +69,14 @@ public:
     /* Returns the singleton instance of overlay */
     static Overlay* getInstance();
 
+    /* set the framebuffer index for external display */
+    void setExtFbNum(int fbNum);
+
+    /* Returns framebuffer index of the current external display */
+    int getExtFbNum();
+
+    static int sExtFbIndex;
+
 private:
     /* Ctor setup */
     Overlay();
@@ -87,6 +95,14 @@ private:
     /* Singleton Instance*/
     static Overlay *sInstance;
 };
+
+inline void Overlay::setExtFbNum(int fbNum) {
+    sExtFbIndex = fbNum;
+}
+
+inline int Overlay::getExtFbNum() {
+    return sExtFbIndex;
+}
 
 } // overlay
 
