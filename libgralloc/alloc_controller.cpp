@@ -35,8 +35,12 @@
 #include "memalloc.h"
 #include "ionalloc.h"
 #ifdef USE_PMEM_ADSP
+#include "pmemadspalloc.h"
+#endif
+#else
 #include "pmemalloc.h"
 #endif
+#include "ashmemalloc.h"
 #include "gr.h"
 #include "comptype.h"
 
