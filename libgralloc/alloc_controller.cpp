@@ -118,13 +118,15 @@ int IonController::allocate(alloc_data& data, int usage)
     data.uncached = useUncached(usage);
     data.allocType = 0;
 
-#ifdef USE_PMEM_ADSP
     if (usage & GRALLOC_USAGE_PRIVATE_ADSP_HEAP) {
+#ifdef USE_PMEM_ADSP
         data.allocType |= private_handle_t::PRIV_FLAGS_USES_PMEM_ADSP;
         ret = mPmemAlloc->alloc_buffer(data);
         return ret;
-    }
+#else
+        ionFlags |= ION_HEAP(ION_ADSP_HEAP_ID);
 #endif
+    }
 
     if(usage & GRALLOC_USAGE_PRIVATE_UI_CONTIG_HEAP)
         ionFlags |= ION_HEAP(ION_SF_HEAP_ID);
