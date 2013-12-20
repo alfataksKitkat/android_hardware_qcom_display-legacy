@@ -44,6 +44,7 @@ enum {
     GRALLOC_USAGE_PRIVATE_SYSTEM_HEAP     =       GRALLOC_USAGE_PRIVATE_2,
     /* MM heap is a carveout heap for video, can be secured*/
     GRALLOC_USAGE_PRIVATE_MM_HEAP         =       GRALLOC_USAGE_PRIVATE_3,
+
     /* IOMMU heap comes from manually allocated pages,
      * can be cached/uncached, is not secured */
     GRALLOC_USAGE_PRIVATE_IOMMU_HEAP      =       0x01000000,
@@ -157,6 +158,26 @@ enum {
     GRALLOC_MODULE_PERFORM_CREATE_HANDLE_FROM_BUFFER = 0x080000001,
 };
 
+#ifdef USE_ION
+#define GRALLOC_HEAP_MASK   (GRALLOC_USAGE_PRIVATE_UI_CONTIG_HEAP |\
+                             GRALLOC_USAGE_PRIVATE_SYSTEM_HEAP    |\
+                             GRALLOC_USAGE_PRIVATE_IOMMU_HEAP     |\
+                             GRALLOC_USAGE_PRIVATE_MM_HEAP        |\
+                             GRALLOC_USAGE_PRIVATE_CAMERA_HEAP    |\
+                             GRALLOC_USAGE_PRIVATE_ADSP_HEAP)
+#else
+#define GRALLOC_HEAP_MASK   (GRALLOC_USAGE_PRIVATE_ADSP_HEAP      |\
+                             GRALLOC_USAGE_PRIVATE_UI_CONTIG_HEAP |\
+                             GRALLOC_USAGE_PRIVATE_SMI_HEAP       |\
+                             GRALLOC_USAGE_PRIVATE_SYSTEM_HEAP    |\
+                             GRALLOC_USAGE_PRIVATE_IOMMU_HEAP     |\
+                             GRALLOC_USAGE_PRIVATE_MM_HEAP        |\
+                             GRALLOC_USAGE_PRIVATE_WRITEBACK_HEAP |\
+                             GRALLOC_USAGE_PRIVATE_CAMERA_HEAP)
+#define DEVICE_PMEM "/dev/pmem"
+#define DEVICE_PMEM_ADSP "/dev/pmem_adsp"
+#define DEVICE_PMEM_SMIPOOL "/dev/pmem_smipool"
+#endif
 
 #define INTERLACE_MASK 0x80
 #define S3D_FORMAT_MASK 0xFF000
