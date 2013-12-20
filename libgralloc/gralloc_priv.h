@@ -44,6 +44,7 @@ enum {
     GRALLOC_USAGE_PRIVATE_SYSTEM_HEAP     =       GRALLOC_USAGE_PRIVATE_2,
     /* MM heap is a carveout heap for video, can be secured*/
     GRALLOC_USAGE_PRIVATE_MM_HEAP         =       GRALLOC_USAGE_PRIVATE_3,
+
     /* IOMMU heap comes from manually allocated pages,
      * can be cached/uncached, is not secured */
     GRALLOC_USAGE_PRIVATE_IOMMU_HEAP      =       0x01000000,
@@ -156,7 +157,8 @@ enum {
                              GRALLOC_USAGE_PRIVATE_SYSTEM_HEAP    |\
                              GRALLOC_USAGE_PRIVATE_IOMMU_HEAP     |\
                              GRALLOC_USAGE_PRIVATE_MM_HEAP        |\
-                             GRALLOC_USAGE_PRIVATE_CAMERA_HEAP)
+                             GRALLOC_USAGE_PRIVATE_CAMERA_HEAP    |\
+                             GRALLOC_USAGE_PRIVATE_ADSP_HEAP)
 #else
 #define GRALLOC_HEAP_MASK   (GRALLOC_USAGE_PRIVATE_ADSP_HEAP      |\
                              GRALLOC_USAGE_PRIVATE_UI_CONTIG_HEAP |\
