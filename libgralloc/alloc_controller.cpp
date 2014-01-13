@@ -196,7 +196,7 @@ sp<IMemAlloc> IonController::getAllocator(int flags)
     sp<IMemAlloc> memalloc;
     if (flags & private_handle_t::PRIV_FLAGS_USES_ION) {
         memalloc = mIonAlloc;
-        ALOGW("gralloc: memalloc is mIonAlloc (ION)\n");
+        //ALOGW("gralloc: memalloc is mIonAlloc (ION)\n");
 #ifdef USE_PMEM_CAMERA
     } else if (flags & private_handle_t::PRIV_FLAGS_USES_PMEM_ADSP) {
         memalloc = mPmemAlloc;
